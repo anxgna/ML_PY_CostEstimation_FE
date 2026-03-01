@@ -2,6 +2,8 @@ import gradio as gr
 import httpx
 import os
 from config import API_BASE_URL
+from fastapi import FastAPI
+
 
 def predict(area, bedrooms, bathrooms, stories, mainroad, guestroom, basement, hotwaterheating, airconditioning):
     payload = {
@@ -52,9 +54,7 @@ with gr.Blocks() as demo:
             history_table = gr.Dataframe(headers=["id", "price", "model_version", "created_at"], label="Prediction History")
             history_btn.click(fn=get_history, inputs=None, outputs=history_table)
 
-demo.launch(
-    server_name="0.0.0.0", 
-    server_port=10000,
-    root_path="https://cost-estimation-ui.onrender.com"
-)
+app = FastAPI()
+app = gr.mount_gradio_app(app, demo, path="/")
+
 
