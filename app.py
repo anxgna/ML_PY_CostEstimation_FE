@@ -52,4 +52,4 @@ with gr.Blocks() as demo:
             history_table = gr.Dataframe(headers=["id", "price", "model_version", "created_at"], label="Prediction History")
             history_btn.click(fn=get_history, inputs=None, outputs=history_table)
 
-demo.launch()
+demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7860)))
