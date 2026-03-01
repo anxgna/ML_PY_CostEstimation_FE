@@ -54,8 +54,7 @@ with gr.Blocks() as demo:
 
 demo.launch(
     server_name="0.0.0.0", 
-    server_port=10000, 
-    share=False,
-    allowed_paths=["/"]
+    server_port=10000,
+    root_path="https://cost-estimation-ui.onrender.com"
 )
 
